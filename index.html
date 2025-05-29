@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroVibe - Premium Sneakers</title>
+    <link rel="icon" type="image/png" href="photos/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ccc;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(255, 255, 255, 0.1));
+            border-radius: 5%;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+            border-color: #666;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .availability-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Product Info Section */
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-code {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Product Detail Page */
+        .product-detail {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .back-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+            transform: translateX(-5px);
+        }
+
+        .product-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .product-detail-image {
+            text-align: center;
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid #333;
+        }
+
+        .product-detail-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 30px 60px rgba(255, 255, 255, 0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .product-detail-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-detail-info {
+            padding: 2rem 0;
+        }
+
+        .product-detail-info h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .product-detail-code {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .product-detail-info .availability {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .product-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .contact-info p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn-detail {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-contact {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .messenger-contact {
+            background-color: #0084FF;
+            color: white;
+        }
+
+        .phone-contact {
+            background-color: #333;
+            color: white;
+        }
+
+        .contact-btn-detail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hide main content when product detail is active */
+        .main-content.hidden {
+            display: none;
+        }
+
+        .hero.hidden {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #000;
+                flex-direction: column;
+                padding: 1rem 2rem;
+                border-top: 1px solid #333;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .product-detail-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-detail-info h1 {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .product-detail-container {
+                padding: 0 1rem;
+            }
+
+            .product-detail-image {
+                padding: 2rem;
+            }
+        }
+
+        /* Floating Action Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+
+        .messenger-btn {
+            background-color: #0084FF;
+        }
+
+        .contact-btn {
+            background-color: #333;
+            position: relative;
+        }
+
+        /* Contact Dropdown */
+        .contact-dropdown {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .contact-dropdown h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 8px;
+        }
+
+        .contact-option:hover {
+            background-color: #333;
+        }
+
+        .contact-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .facebook-icon {
+            color: #1877F2;
+        }
+
+        .email-icon {
+            color: #EA4335;
+        }
+
+        .phone-icon {
+            color: #34A853;
+        }
+
+        /* Mobile responsiveness for floating buttons */
+        @media (max-width: 768px) {
+            .floating-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .contact-dropdown {
+                right: -10px;
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">AstroVibe</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Collections</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Step Into the Future</h1>
+                <p>Discover our exclusive collection of premium sneakers that blend cutting-edge design with unmatched comfort.</p>
+                <a href="#products" class="cta-button">Shop Now</a>
+            </div>
+            <div class="hero-image">
+                <img src="photos/banner.png" alt="Featured Sneaker" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <h2 class="section-title">Currently Available</h2>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+    <!-- 44 Product Cards -->
+    <div class="product-card" data-product="1" data-title="Sneaker 1" data-code="AV-001" data-image="photos/AV-00 (1).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (1).jpg" alt="AV-001" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-001</div>
+            <div class="product-name">Sneaker 1</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="2" data-title="Sneaker 2" data-code="AV-002" data-image="photos/AV-00 (2).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (2).jpg" alt="AV-002" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-002</div>
+            <div class="product-name">Sneaker 2</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="3" data-title="Sneaker 3" data-code="AV-003" data-image="photos/AV-00 (3).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (3).jpg" alt="AV-003" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-003</div>
+            <div class="product-name">Sneaker 3</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="4" data-title="Sneaker 4" data-code="AV-004" data-image="photos/AV-00 (4).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (4).jpg" alt="AV-004" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-004</div>
+            <div class="product-name">Sneaker 4</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="5" data-title="Sneaker 5" data-code="AV-005" data-image="photos/AV-00 (5).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (5).jpg" alt="AV-005" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-005</div>
+            <div class="product-name">Sneaker 5</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="6" data-title="Sneaker 6" data-code="AV-006" data-image="photos/AV-00 (6).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (6).jpg" alt="AV-006" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-006</div>
+            <div class="product-name">Sneaker 6</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="7" data-title="Sneaker 7" data-code="AV-007" data-image="photos/AV-00 (7).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (7).jpg" alt="AV-007" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-007</div>
+            <div class="product-name">Sneaker 7</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="8" data-title="Sneaker 8" data-code="AV-008" data-image="photos/AV-00 (8).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (8).jpg" alt="AV-008" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-008</div>
+            <div class="product-name">Sneaker 8</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="9" data-title="Sneaker 9" data-code="AV-009" data-image="photos/AV-00 (9).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (9).jpg" alt="AV-009" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-009</div>
+            <div class="product-name">Sneaker 9</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="10" data-title="Sneaker 10" data-code="AV-010" data-image="photos/AV-00 (10).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (10).jpg" alt="AV-010" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-010</div>
+            <div class="product-name">Sneaker 10</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="11" data-title="Sneaker 11" data-code="AV-011" data-image="photos/AV-00 (11).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (11).jpg" alt="AV-011" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-011</div>
+            <div class="product-name">Sneaker 11</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="12" data-title="Sneaker 12" data-code="AV-012" data-image="photos/AV-00 (12).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (12).jpg" alt="AV-012" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-012</div>
+            <div class="product-name">Sneaker 12</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="13" data-title="Sneaker 13" data-code="AV-013" data-image="photos/AV-00 (13).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (13).jpg" alt="AV-013" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-013</div>
+            <div class="product-name">Sneaker 13</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="14" data-title="Sneaker 14" data-code="AV-014" data-image="photos/AV-00 (14).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (14).jpg" alt="AV-014" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-014</div>
+            <div class="product-name">Sneaker 14</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="15" data-title="Sneaker 15" data-code="AV-015" data-image="photos/AV-00 (15).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (15).jpg" alt="AV-015" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-015</div>
+            <div class="product-name">Sneaker 15</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="16" data-title="Sneaker 16" data-code="AV-016" data-image="photos/AV-00 (16).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (16).jpg" alt="AV-016" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-016</div>
+            <div class="product-name">Sneaker 16</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="17" data-title="Sneaker 17" data-code="AV-017" data-image="photos/AV-00 (17).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (17).jpg" alt="AV-017" loading="lazy" />
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-017</div>
+            <div class="product-name">Sneaker 17</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="18" data-title="Sneaker 18" data-code="AV-018" data-image="photos/AV-00 (18).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (18).jpg" alt="AV-018" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-018</div>
+            <div class="product-name">Sneaker 18</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="19" data-title="Sneaker 19" data-code="AV-019" data-image="photos/AV-00 (19).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (19).jpg" alt="AV-019" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-019</div>
+            <div class="product-name">Sneaker 19</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="20" data-title="Sneaker 20" data-code="AV-020" data-image="photos/AV-00 (20).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (20).jpg" alt="AV-020" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-020</div>
+            <div class="product-name">Sneaker 20</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="21" data-title="Sneaker 21" data-code="AV-021" data-image="photos/AV-00 (21).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (21).jpg" alt="AV-021" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-021</div>
+            <div class="product-name">Sneaker 21</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="22" data-title="Sneaker 22" data-code="AV-022" data-image="photos/AV-00 (22).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (22).jpg" alt="AV-022" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-022</div>
+            <div class="product-name">Sneaker 22</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="23" data-title="Sneaker 23" data-code="AV-023" data-image="photos/AV-00 (23).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (23).jpg" alt="AV-023" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-023</div>
+            <div class="product-name">Sneaker 23</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="24" data-title="Sneaker 24" data-code="AV-024" data-image="photos/AV-00 (24).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (24).jpg" alt="AV-024" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-024</div>
+            <div class="product-name">Sneaker 24</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="25" data-title="Sneaker 25" data-code="AV-025" data-image="photos/AV-00 (25).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (25).jpg" alt="AV-025" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-025</div>
+            <div class="product-name">Sneaker 25</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="26" data-title="Sneaker 26" data-code="AV-026" data-image="photos/AV-00 (26).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (26).jpg" alt="AV-026" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-026</div>
+            <div class="product-name">Sneaker 26</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="27" data-title="Sneaker 27" data-code="AV-027" data-image="photos/AV-00 (27).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (27).jpg" alt="AV-027" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-027</div>
+            <div class="product-name">Sneaker 27</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="28" data-title="Sneaker 28" data-code="AV-028" data-image="photos/AV-00 (28).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (28).jpg" alt="AV-028" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-028</div>
+            <div class="product-name">Sneaker 28</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="29" data-title="Sneaker 29" data-code="AV-029" data-image="photos/AV-00 (29).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (29).jpg" alt="AV-029" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-029</div>
+            <div class="product-name">Sneaker 29</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="30" data-title="Sneaker 30" data-code="AV-030" data-image="photos/AV-00 (30).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (30).jpg" alt="AV-030" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-030</div>
+            <div class="product-name">Sneaker 30</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="31" data-title="Sneaker 31" data-code="AV-031" data-image="photos/AV-00 (31).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (31).jpg" alt="AV-031" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-031</div>
+            <div class="product-name">Sneaker 31</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="32" data-title="Sneaker 32" data-code="AV-032" data-image="photos/AV-00 (32).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (32).jpg" alt="AV-032" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-032</div>
+            <div class="product-name">Sneaker 32</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="33" data-title="Sneaker 33" data-code="AV-033" data-image="photos/AV-00 (33).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (33).jpg" alt="AV-033" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-033</div>
+            <div class="product-name">Sneaker 33</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="34" data-title="Sneaker 34" data-code="AV-034" data-image="photos/AV-00 (34).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (34).jpg" alt="AV-034" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-034</div>
+            <div class="product-name">Sneaker 34</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="35" data-title="Sneaker 35" data-code="AV-035" data-image="photos/AV-00 (35).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (35).jpg" alt="AV-035" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-035</div>
+            <div class="product-name">Sneaker 35</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="36" data-title="Sneaker 36" data-code="AV-036" data-image="photos/AV-00 (36).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (36).jpg" alt="AV-036" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-036</div>
+            <div class="product-name">Sneaker 36</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="37" data-title="Sneaker 37" data-code="AV-037" data-image="photos/AV-00 (37).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (37).jpg" alt="AV-037" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-037</div>
+            <div class="product-name">Sneaker 37</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="38" data-title="Sneaker 38" data-code="AV-038" data-image="photos/AV-00 (38).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (38).jpg" alt="AV-038" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-038</div>
+            <div class="product-name">Sneaker 38</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="39" data-title="Sneaker 39" data-code="AV-039" data-image="photos/AV-00 (39).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (39).jpg" alt="AV-039" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-039</div>
+            <div class="product-name">Sneaker 39</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="40" data-title="Sneaker 40" data-code="AV-040" data-image="photos/AV-00 (40).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (40).jpg" alt="AV-040" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-040</div>
+            <div class="product-name">Sneaker 40</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="41" data-title="Sneaker 41" data-code="AV-041" data-image="photos/AV-00 (41).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (41).jpg" alt="AV-041" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-041</div>
+            <div class="product-name">Sneaker 41</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="42" data-title="Sneaker 42" data-code="AV-042" data-image="photos/AV-00 (42).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (42).jpg" alt="AV-042" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-042</div>
+            <div class="product-name">Sneaker 42</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="43" data-title="Sneaker 43" data-code="AV-043" data-image="photos/AV-00 (43).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (43).jpg" alt="AV-043" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-043</div>
+            <div class="product-name">Sneaker 43</div>
+        </div>
+    </div>
+    <div class="product-card" data-product="44" data-title="Sneaker 44" data-code="AV-044" data-image="photos/AV-00 (44).jpg">
+        <div class="product-image">
+            <img src="photos/AV-00 (44).jpg" alt="AV-044" loading="lazy"/>
+            <div class="availability-badge">Available</div>
+        </div>
+        <div class="product-info">
+            <div class="product-code">AV-044</div>
+            <div class="product-name">Sneaker 44</div>
+        </div>
+    </div>
+</div>
+    </main>
+
+    <!-- Product Detail Page -->
+    <section class="product-detail" id="product-detail">
+        <div class="product-detail-container">
+            <button class="back-button" id="back-button">
+                ← Back to Collection
+            </button>
+            
+            <div class="product-detail-content">
+                <div class="product-detail-image">
+                    <img id="detail-image" src="/placeholder.svg" alt="Sneaker Detail" />
+                </div>
+                
+                <div class="product-detail-info">
+                    <h1 id="detail-title">Premium Sneaker</h1>
+                    <div class="product-detail-code" id="detail-code">AV-001</div>
+                    <div class="availability">Currently Available</div>
+                    
+                    <p class="product-description">
+                        Experience the perfect blend of style and comfort with this premium sneaker. 
+                        Crafted with high-quality materials and innovative design, this shoe is perfect 
+                        for both casual wear and athletic activities. Contact us for more details about 
+                        sizing, colors, and availability.
+                    </p>
+                    
+                    <div class="contact-info">
+                        <h3>Interested in this sneaker?</h3>
+                        <p>Get in touch with us for pricing, sizing, and availability information. Reference the product code when contacting us.</p>
+                        
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/01869280388?text=Hello%20AstroVibe!%20I'm%20interested%20in%20your%20sneakers.s" id="whatsapp-link"
+                               class="contact-btn-detail whatsapp-contact" target="_blank">
+                                💬 WhatsApp
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61568454935998" 
+                               class="contact-btn-detail messenger-contact" target="_blank">
+                                📧 Messenger
+                            </a>
+                            <a href="tel:+8801790059061" 
+                               class="contact-btn-detail phone-contact">
+                                📞 Call Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('products-grid').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Product detail functionality
+        const productCards = document.querySelectorAll('.product-card');
+        const productDetail = document.getElementById('product-detail');
+        const mainContent = document.getElementById('main-content');
+        const hero = document.getElementById('hero');
+        const backButton = document.getElementById('back-button');
+        const detailImage = document.getElementById('detail-image');
+        const detailTitle = document.getElementById('detail-title');
+        const detailCode = document.getElementById('detail-code');
+        const whatsappLink = document.getElementById('whatsapp-link');
+
+        // Show product detail
+        productCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Get data from the clicked card
+                const title = card.getAttribute('data-title');
+                const code = card.getAttribute('data-code');
+                const image = card.getAttribute('data-image');
+                
+                // Update product detail content
+                detailTitle.textContent = title;
+                detailCode.textContent = code;
+                detailImage.src = image;
+                detailImage.alt = code;
+                
+                // Update WhatsApp link with product code
+                const whatsappMessage = `Hi AstroVibe! I'm interested in sneaker ${code} (${title}). Can you provide more details?`;
+                whatsappLink.href = `https://wa.me/8801869280388?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Hide main content and hero
+                mainContent.classList.add('hidden');
+                hero.classList.add('hidden');
+                
+                // Show product detail
+                productDetail.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Back button functionality
+        backButton.addEventListener('click', () => {
+            // Hide product detail
+            productDetail.classList.remove('active');
+            
+            // Show main content and hero
+            mainContent.classList.remove('hidden');
+            hero.classList.remove('hidden');
+            
+            // Scroll to products section
+            document.getElementById('products-grid').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact dropdown functionality
+        const contactBtn = document.getElementById('contact-btn');
+        const contactDropdown = document.getElementById('contact-dropdown');
+
+        if (contactBtn && contactDropdown) {
+            contactBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                contactDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!contactBtn.contains(e.target)) {
+                    contactDropdown.classList.remove('active');
+                }
+            });
+
+            // Close dropdown when pressing escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    contactDropdown.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/01869280388?text=Hello%20AstroVibe!%20I'm%20interested%20in%20your%20sneakers." 
+           class="floating-btn whatsapp-btn" 
+           target="_blank" 
+           title="Chat on WhatsApp">
+            💬
+        </a>
+        
+        <!-- Messenger Button -->
+        <a href="https://www.facebook.com/profile.php?id=61568454935998" 
+           class="floating-btn messenger-btn" 
+           target="_blank" 
+           title="Message us on Messenger">
+            📧
+        </a>
+        
+        <!-- Contact Button with Dropdown -->
+        <div class="contact-btn floating-btn" id="contact-btn" title="Contact Options">
+            📞
+            <div class="contact-dropdown" id="contact-dropdown">
+                <h4>Get in Touch</h4>
+                <a href="https://www.facebook.com/profile.php?id=61568454935998" class="contact-option" target="_blank">
+                    <span class="contact-icon facebook-icon">📘</span>
+                    <span>Facebook</span>
+                </a>
+                <a href="mailto:fardaustaohyd31@gmail.com" class="contact-option">
+                    <span class="contact-icon email-icon">✉️</span>
+                    <span>Email Us</span>
+                </a>
+                <a href="tel:+8801790059061" class="contact-option">
+                    <span class="contact-icon phone-icon">📞</span>
+                    <span>Call Us</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
