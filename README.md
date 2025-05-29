@@ -13,16 +13,16 @@ AstroVibe Sneakers is a modern and responsive sneaker showcase website built wit
 - CSS3
 - JavaScript
 
-## 🌐 Live Preview
-[View Website]([https://yourusername.github.io/repo-name/](https://fardaustaohyd.github.io/astrovibe_sneakers/))  
-
+## 🌐 Live Preview 
+[View Website](https://fardaustaohyd.github.io/astrovibe_sneakers/) 
 
 ## 🚀 How to Run
 ```bash
 git clone https://github.com/yourusername/repo-name.git
 open index.html
+```
 
 📩 Contact
 📧 fardaustaohyd31@gmail.com
-📸 Facebook: [AstroVibe]([https://yourusername.github.io/repo-name/](https://fardaustaohyd.github.io/astrovibe_sneakers/)) 
+📸 Facebook: [AstroVibe](https://www.facebook.com/profile.php?id=61568454935998) 
 
