@@ -1,2 +1,28 @@
-# astrovibe_sneakers
-AstroVibe Sneakers – A stylish, responsive product showcase website for our sneaker brand. Built with HTML, CSS, and JavaScript to deliver fast, clean, and modern sneaker browsing.
+# AstroVibe Sneakers 👟
+
+AstroVibe Sneakers is a modern and responsive sneaker showcase website built with HTML, CSS, and JavaScript. It highlights our latest collections with fast loading, clean UI and mobile-first design.
+
+## 🔥 Features
+- Responsive sneaker gallery
+- Clean and modern UI
+- Fast performance
+- Mobile-friendly layout
+
+## 🛠 Tech Stack
+- HTML5
+- CSS3
+- JavaScript
+
+## 🌐 Live Preview
+[View Website](https://yourusername.github.io/repo-name/)  
+*Replace with your actual GitHub Pages link*
+
+## 🚀 How to Run
+```bash
+git clone https://github.com/yourusername/repo-name.git
+open index.html
+
+📩 Contact
+📧 info@astrovibesneakers.com
+📸 Instagram: @astrovibesneakers
+
